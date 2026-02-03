@@ -1,6 +1,6 @@
-import * as echarts from "@/utils/echarts.min.js"
+import * as echarts from "echarts"
 
-export default function initBarChart(container){
+export function initBarChart1(container){
     const chart = echarts.init(container);
     let option = {
     color: ["#3398DB"],
@@ -41,6 +41,7 @@ export default function initBarChart(container){
     ]
   };
   chart.setOption(option);
-  window.addEventListener("resize",()=>chart.resize());
-  console.log("hji")
+  window.addEventListener("resize", function() {
+    chart.resize();
+  });
 }

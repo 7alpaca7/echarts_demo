@@ -8,9 +8,19 @@
 </template>
 <script>
     export default{
+        mounted(){
+            this.mod = this.$refs.chartModle;
+            this.initChart(this.mod);
+        },
+        props:{
+            initChart:{
+                type: Function,
+                required: true
+            }
+        },
         data(){
             return {
-
+                mod: null
             }
         }
     }
@@ -87,5 +97,10 @@ padding为 上为 0 左右 15px 下为 40px
     .chart{
         /* background-color: red; */
         height: 3rem;
+    }
+    .panel .chart {
+        flex: 1;         /* 填充 Panel 剩余高度 */
+        width: 100%;
+        min-width: 0;    /* 避免横向溢出 */
     }
 </style>

@@ -1,15 +1,16 @@
 <script>
-  import Header from "./components/header.vue";
-  import {initFlexible} from "./utils/flexible";
-  import Panel from "./components/panel.vue";
-  import MapHeader from "./components/map-header.vue";
-  import MapMainbox from "./components/map-mainbox.vue";
+  import Header from "@/components/header.vue";
+  import {initFlexible} from "@/utils/flexible";
+  import Panel from "@/components/panel.vue";
+  import MapHeader from "@/components/map-header.vue";
+  import MapMainbox from "@/components/map-mainbox.vue";
+  import {initBarChart1} from "@/charts/bar1";
   
   initFlexible();
   export default{
     data(){
       return {
-
+        optionLeft1: initBarChart1
       }
     },
     components:{
@@ -25,18 +26,18 @@
   <Header />
   <section class="mainbox">
       <div class="left">
-          <Panel />
-          <Panel />
-          <Panel />
+          <Panel :initChart= "optionLeft1" />
+          <Panel :initChart= "optionLeft1" />
+          <Panel :initChart= "optionLeft1" />
       </div>
       <div class="map">
         <MapHeader />
         <MapMainbox />
       </div>
       <div class="right">
-          <Panel />
-          <Panel />
-          <Panel />
+          <Panel :initChart= "optionLeft1" />
+          <Panel :initChart= "optionLeft1" />
+          <Panel :initChart= "optionLeft1" />
       </div>
   </section>
 </template>
@@ -93,4 +94,18 @@
     flex: 3;
     /* background-color: red; */
   }
+  .left, .map, .right {
+    flex: 3 1 0; /* 保留原来的比例 */
+    min-width: 0; /* 核心：防止内容撑开列宽 */
+    display: flex;
+    flex-direction: column;
+  }
+  .left .panel,
+  .map .panel,
+  .right .panel {
+    flex: 1;       /* 平均填充父列高度 */
+    min-height: 0; /* 防止纵向溢出 */
+    margin-bottom: 0.1875rem;
+  }
+
 </style>
