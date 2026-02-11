@@ -1,29 +1,56 @@
 <template>
     <div class="panel">
-        <h2>标题</h2>
+        <h2>{{ title }} <a href="#" v-if="clickA" @click="clickAchange($event)">2020</a> <a href="#" v-if="clickA"
+                @click="clickAchange($event)">2021</a></h2>
         <div class="chart" ref="chartModle">
         </div>
         <div class="panel-footer"></div>
     </div>
 </template>
 <script>
-    export default{
-        mounted(){
-            this.mod = this.$refs.chartModle;
-            this.initChart(this.mod);
-        },
-        props:{
-            initChart:{
-                type: Function,
-                required: true
-            }
-        },
-        data(){
-            return {
-                mod: null
+export default {
+    mounted() {
+        this.mod = this.$refs.chartModle;
+        this.initChart(this.mod, this.aim);
+    },
+    methods: {
+        clickAchange: function (event) {
+            console.log(event.currentTarget.textContent);
+            let now = 0;
+            if (event.currentTarget.textContent == 2020)
+                now = 0;
+            else
+                now = 1;
+            if (now !== this.aim) {
+                this.aim = now;
+                console.log(this.aim, "更换成功")
+                this.setDataSets(this.aim);
             }
         }
+    },
+    props: {
+        initChart: {
+            type: Function,
+            required: true
+        },
+        title: {
+            type: String,
+        },
+        clickA: {
+            type: Boolean,
+            default: false
+        },
+        setDataSets: {
+            type: Function
+        }
+    },
+    data() {
+        return {
+            mod: null,
+            aim: 0
+        }
     }
+}
 </script>
 <style scoped>
 /* 公共面板模块 panel
@@ -34,73 +61,89 @@ padding为 上为 0 左右 15px 下为 40px
 下外边距是 15px
 利用panel 盒子 before 和after 制作上面两个角 大小为 10px 线条为 2px solid #02a6b5
 新加一个盒子before 和after 制作下侧两个角 宽度高度为 10px */
-    .panel{
-        background: url("../assets/img/line.png") no-repeat;
-        height: 3.875rem;
-        border: .0125rem solid rgba(25,186,139,0.17);
-        padding: 0 .1875rem .5rem;
-        margin-bottom: .1875rem;
-        position:relative;
-    }
-    .panel::before{
-        border-top:.025rem solid #02a6b5;
-        border-left: .025rem solid #02a6b5;
-        width: .125rem;
-        height: .125rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: "";
-    }
-    .panel::after{
-        border-top:.025rem solid #02a6b5;
-        border-right: .025rem solid #02a6b5;
-        width: .125rem;
-        height: .125rem;
-        position: absolute;
-        top: 0;
-        right: 0;
-        content: "";
-    }
-    .panel-footer::before{
-        border-bottom:.025rem solid #02a6b5;
-        border-left: .025rem solid #02a6b5;
-        width: .125rem;
-        height: .125rem;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        content: "";
-    }
-    .panel-footer::after{
-        border-bottom:.025rem solid #02a6b5;
-        border-right: .025rem solid #02a6b5;
-        width: .125rem;
-        height: .125rem;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        content: "";
-    }
-    /* 
+.panel>h2>a {
+    text-decoration: none;
+}
+
+.panel {
+    background: url("../assets/img/line.png") no-repeat;
+    height: 3.875rem;
+    border: .0125rem solid rgba(25, 186, 139, 0.17);
+    padding: 0 .1875rem .5rem;
+    margin-bottom: .1875rem;
+    position: relative;
+}
+
+.panel::before {
+    border-top: .025rem solid #02a6b5;
+    border-left: .025rem solid #02a6b5;
+    width: .125rem;
+    height: .125rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+}
+
+.panel::after {
+    border-top: .025rem solid #02a6b5;
+    border-right: .025rem solid #02a6b5;
+    width: .125rem;
+    height: .125rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+}
+
+.panel-footer::before {
+    border-bottom: .025rem solid #02a6b5;
+    border-left: .025rem solid #02a6b5;
+    width: .125rem;
+    height: .125rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+}
+
+.panel-footer::after {
+    border-bottom: .025rem solid #02a6b5;
+    border-right: .025rem solid #02a6b5;
+    width: .125rem;
+    height: .125rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+}
+
+/* 
     
 标题模块 h2 高度为 48px 文字颜色为白色 文字大小为 20px
 
 图标内容模块 chart 高度 240px
     */
-    .panel > h2{
-        color: #fff;
-        text-align: center;
-        height: .6rem;
-        font-size: .25rem;
-    }
-    .chart{
-        /* background-color: red; */
-        height: 3rem;
-    }
+.panel>h2 {
+    color: #fff;
+    text-align: center;
+    height: .6rem;
+    font-size: .25rem;
+}
+
+.chart {
+    /* background-color: red; */
+    height: 3rem;
+    /* position: relative; */
+    overflow: hidden;
+    /* display: flex; */
+}
+
+/*     
     .panel .chart {
-        flex: 1;         /* 填充 Panel 剩余高度 */
+        flex: 1;         
         width: 100%;
-        min-width: 0;    /* 避免横向溢出 */
+        min-width: 0;    
     }
+     */
 </style>
