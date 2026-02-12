@@ -5,12 +5,12 @@
   import MapHeader from "@/components/map-header.vue";
   import MapMainbox from "@/components/map-mainbox.vue";
   import {initBarChart1} from "@/charts/bar1";
-  import { initBarChart2 } from "./charts/bar2";
-  import { initLineChart1,setDataSets} from "./charts/line1";
-  import { initLineChart2 } from "./charts/line2";
-  import { initPieChart1 } from "./charts/pie1";
-  import { initPieChart2 } from "./charts/pie2";
-  import { initMidChart } from "./charts/mid";
+  import { initBarChart2 } from "@/charts/bar2";
+  import { initLineChart1,setDataSets} from "@/charts/line1";
+  import { initLineChart2 } from "@/charts/line2";
+  import { initPieChart1 } from "@/charts/pie1";
+  import { initPieChart2 } from "@/charts/pie2";
+  import { initMidChart } from "@/charts/mid";
   export default{
     beforeMount(){
       initFlexible();
