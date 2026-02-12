@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base:"/echartsDemo/",
+  base:"/echarts_demo/",
   plugins: [
     vue(),
     // vueDevTools(),
