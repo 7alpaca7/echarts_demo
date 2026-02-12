@@ -22,12 +22,12 @@ const yearData = [
 let option = {
     color: ['#00f2f1', '#ed3f35'],
     legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        data: ['新增粉丝', '新增游客']
     },
     grid: {
-        top: "20%",
+        top: "10%",
         left: '3%',
-        right: '4%',
+        right: '3%',
         bottom: '3%',
         containLabel: true,
         // 显示边框
@@ -40,8 +40,8 @@ let option = {
         textStyle: {
             color: "#4c9bfd"
         },
-        right: "10%",
-        top: "5%"
+        right: "5%",
+        top: "0%"
     },
     xAxis: {
         type: 'category',

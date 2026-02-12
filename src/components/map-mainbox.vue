@@ -1,9 +1,25 @@
 <script>
-
+export default {
+  mounted() {
+    this.mod = this.$refs.mod;
+    this.initChart(this.mod);
+  },
+  data(){
+    return{
+        mod:null
+    }
+  },
+  props:{
+    initChart:{
+        type:Function
+    }
+  }
+}
 </script>
+
 <template>
     <div class="mapMainBox">
-        <div class="chart"></div>
+        <div class="chart" ref="mod"></div>
         <div class="map1"></div>
         <div class="map2"></div>
         <div class="map3"></div>
@@ -20,6 +36,7 @@
     /* background-color: red; */
     height: 10.125rem;
     position: relative;
+    overflow: hidden;
 }
 .map1{
     height: 6.475rem;
@@ -31,6 +48,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    /* overflow: hidden; */
 }
 @keyframes zhuang2{
     from{
@@ -52,6 +70,7 @@
     transform: translate(-50%,-50%);
     opacity: .6;
     animation: zhuang2 10s linear infinite;
+    /* overflow: hidden; */
 }
 @keyframes zhuang3{
     from{
@@ -71,5 +90,10 @@
     left: 50%;
     transform: translate(-50%,-50%);
     animation: zhuang3 15s linear infinite;
+    /* overflow: hidden; */
+}
+.chart{
+    z-index:10;
+    height:100%;
 }
 </style>

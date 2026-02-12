@@ -7,7 +7,10 @@
   import {initBarChart1} from "@/charts/bar1";
   import { initBarChart2 } from "./charts/bar2";
   import { initLineChart1,setDataSets} from "./charts/line1";
-  
+  import { initLineChart2 } from "./charts/line2";
+  import { initPieChart1 } from "./charts/pie1";
+  import { initPieChart2 } from "./charts/pie2";
+  import { initMidChart } from "./charts/mid";
   export default{
     beforeMount(){
       initFlexible();
@@ -17,7 +20,11 @@
         optionLeft1: initBarChart1,
         optionRight1: initBarChart2,
         optionLeft2: initLineChart1,
-        setDataSets: setDataSets
+        setDataSets: setDataSets,
+        optionRight2: initLineChart2,
+        optionLeft3: initPieChart1,
+        optionRight3: initPieChart2,
+        optionMid: initMidChart
       }
     },
     components:{
@@ -35,16 +42,16 @@
       <div class="left">
           <Panel :initChart= "optionLeft1" title = "柱状图-就业行业 2019 2020"/>
           <Panel :initChart= "optionLeft2" title = "折线图-人员变化" clickA = "true" :setDataSets = "setDataSets" />
-          <Panel :initChart= "optionLeft1" />
+          <Panel :initChart= "optionLeft3" title = "饼形图-年龄分布" />
       </div>
       <div class="map">
         <MapHeader />
-        <MapMainbox />
+        <MapMainbox :initChart="optionMid"/>
       </div>
       <div class="right">
           <Panel :initChart= "optionRight1" title="柱状图-技能掌握"/>
-          <Panel :initChart= "optionLeft1" />
-          <Panel :initChart= "optionLeft1" />
+          <Panel :initChart= "optionRight2"  title="折线图-播放量"/>
+          <Panel :initChart= "optionRight3" title="饼形图-地区分布" />
       </div>
   </section>
 </template>
@@ -89,20 +96,21 @@
   }
   .left{
     height: 100%;
-    /* flex: 3; */
-    width: 25%;
+    flex: 3;
+    /* width: 25%; */
     /* background-color: red; */
   }
   .map{
     height: 100%;
-    /* flex: 5; */
-    width: 50%;
+    flex: 5;
+    /* width: 50%; */
     /* background-color: blue; */
+    
   }
   .right{
     height: 100%;
-    /* flex: 3; */
-    width: 25%;
+    flex: 3;
+    /* width: 25%; */
     /* background-color: red; */
   }
   /* .left, .map, .right {
@@ -118,5 +126,15 @@
     min-height: 0; 
     margin-bottom: 0.1875rem;
   } */
-
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
+}
 </style>

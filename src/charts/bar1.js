@@ -1,7 +1,7 @@
 import * as echarts from "echarts"
 import px2rem from '@/utils/px2rem'
 export function initBarChart1(container) {
-  console.log("调用成功", px2rem(0.22));
+  // console.log("调用成功", px2rem(0.22));
   const chart = echarts.init(container);
   let option = {
     tooltip: {
@@ -90,7 +90,7 @@ export function initBarChart1(container) {
   };
   chart.setOption(option);
   window.addEventListener("resize", function () {
-    console.log("change ", px2rem(0.22));
+    // console.log("change ", px2rem(0.22));
     chart.resize();
     chart.setOption(option);
   });

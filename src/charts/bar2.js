@@ -1,15 +1,15 @@
 import * as echarts from "echarts"
 import px2rem from '@/utils/px2rem'
 export function initBarChart2(container) {
-  console.log("调用成功", px2rem(0.22));
+  // console.log("调用成功", px2rem(0.22));
   const chart = echarts.init(container);
 
   let myColor = ['#1089E7', '#F57474', '#56D0E3', '#F8B448', '#8B78F6']
   let option = {
     grid: {
-      top: "10%",
-      left: "22%",
-      bottom: "10%",
+      top: "0%",
+      left: "10%",
+      bottom: "0%",
       // containLabel: true
     },
     // 不显示x轴
@@ -74,6 +74,7 @@ export function initBarChart2(container) {
         label: {
           show: true,
           position: "inside",
+          color:"#fff",
           // {c}会自动的解析为数据
           /*
             字符串模版
@@ -106,7 +107,7 @@ export function initBarChart2(container) {
 
   chart.setOption(option);
   window.addEventListener("resize", function () {
-    console.log("change ", px2rem(0.22));
+    // console.log("change ", px2rem(0.22));
     chart.resize();
     chart.setOption(option);
   });
